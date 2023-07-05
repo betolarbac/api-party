@@ -35,6 +35,7 @@ const serviceController = {
         }
 
       },
+
     //pegar serviços pelo id 
       get: async(req, res) => {
         try {
@@ -52,6 +53,7 @@ const serviceController = {
           console.log(error)
         }
       },
+
       delete: async(req, res) => {
         try {
           
@@ -71,6 +73,28 @@ const serviceController = {
         } catch (error) {
           console.log(error)
         }
+      },
+
+      update: async(req, res) => {
+
+        const id = req.params.id;
+
+        const service = {
+          name: req.body.name,
+          description: req.body.description,
+          price: req.body.price,
+          image: req.body.image,
+      };
+
+      const updatedService = await ServiceModel.findByIdAndUpdate(id, service);
+
+      if(!updatedService) {
+        res.status(404).json({msg: "serviço não encontrado"});
+        return
+      }
+
+      res.status(200).json({service, msg: "serviço atualizado"});
+
       }
 }
 
