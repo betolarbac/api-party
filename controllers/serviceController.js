@@ -1,4 +1,4 @@
-const { Service: ServiceModel} = require("../models/service");
+const { Service: ServiceModel} = require("../models/Service");
 
 
 const serviceController = {
