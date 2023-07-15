@@ -49,6 +49,23 @@ const partyController = {
         } catch (error) {
           console.log(error)
         }
+      },
+
+      get: async(req, res) => {
+        try {
+          const id = req.params.id;
+
+          const party = await PartyModel.findById(id);
+
+          if(!party) {
+            res.status(404).json({msg: "festa nao encontrada"});
+          }
+          
+          res.json(party)
+
+        } catch (error) {
+          console.log(error)
+        }
       }
 
 
